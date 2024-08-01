@@ -1,7 +1,6 @@
 import "rsuite/dist/rsuite.min.css";
 import { Panel } from "rsuite";
 import { useFormik } from "formik";
-import OtpVerification from "./OtpVerfication";
 import RegisterForm from "./RegisterForm";
 
 function SignUpForm() {
