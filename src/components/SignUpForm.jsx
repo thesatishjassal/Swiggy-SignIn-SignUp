@@ -5,20 +5,25 @@ import { Button, Divider, Stack } from "rsuite";
 import FloatingLabelInput from "./FloatingLabelInput";
 import ArowBackIcon from "@rsuite/icons/ArowBack";
 import MessageIcon from "@rsuite/icons/Message";
+import RegisterShema from "../Schema/RegisterSchema";
+
 import "rsuite/dist/rsuite.min.css";
 
 function SignUpForm() {
   const [timeLeft, setTimeLeft] = useState(30);
   const [resendPass, setResendPass] = useState(false);
   const [showOtpVerification, setShowOtpVerification] = useState(false);
+  const [showReferralCode, setShowReferralCode] = useState(false);
 
   const formik = useFormik({
     initialValues: {
       phonenumber: "",
       name: "",
       email: "",
+      referralcode: "",
       otp: "",
     },
+    RegisterShema,
     onSubmit: (values) => {
       if (!showOtpVerification) {
         setShowOtpVerification(true);
@@ -30,7 +35,7 @@ function SignUpForm() {
 
   const resendOtp = async () => {
     console.log("Resending OTP...");
-    return new Promise((resolve) => setTimeout(resolve, 1000));
+    // return new Promise((resolve) => setTimeout(resolve, 1000));
   };
 
   useEffect(() => {
@@ -59,9 +64,12 @@ function SignUpForm() {
   const handleBackClick = () => {
     setShowOtpVerification(false);
   };
+  const handleaReferralCode = () => {
+    setShowReferralCode(true);
+  };
 
   return (
-     <Panel shaded bordered bodyFill className="auth_card">
+    <Panel shaded bordered bodyFill className="auth_card">
       <form onSubmit={formik.handleSubmit}>
         <div
           className={`registration-form ${
@@ -103,13 +111,28 @@ function SignUpForm() {
               name="email"
               value={formik.values.email}
               onChange={(value) => formik.setFieldValue("email", value)}
-              id="border-bottom"
             />
-            <p className="refrral-label">
-              <a href="." className="referral_link">
-                Have a referral code?
-              </a>
-            </p>
+            {showReferralCode ? (
+              <FloatingLabelInput
+                label="Referral Code"
+                name="Referral Code"
+                value={formik.values.referralcode}
+                onChange={(value) =>
+                  formik.setFieldValue("referralcode", value)
+                }
+              />
+            ) : (
+              <p className="refrral-label">
+                <a
+                  href="javasript:void(0)"
+                  className="referral_link"
+                  onClick={handleaReferralCode}
+                >
+                  Have a referral code?
+                </a>
+              </p>
+            )}
+
             <Button type="submit" className="btn" block>
               Continue
             </Button>
@@ -166,7 +189,7 @@ function SignUpForm() {
           </Button>
         </div>
       </form>
-      </Panel>
+    </Panel>
   );
 }
 

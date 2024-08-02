@@ -27,6 +27,7 @@ const FloatingLabelInput = ({ label, name, value, onChange, disabled }) => {
             : "form-control border-bottom-none"
         }
         disabled={disabled}
+        id={label === "Referral Code" ? "mb-5" : ""}
       />
       <label className={focused || value ? "active" : ""}>{label}</label>
     </div>

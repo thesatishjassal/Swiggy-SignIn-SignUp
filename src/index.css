@@ -240,3 +240,9 @@ p.action-text span.cta.phonenumber {
 .otpverification-container {
   transition: all 0.5s ease;
 }
+#mb-5 {
+  margin-bottom: 30px;
+}
+.rs-divider-horizontal {
+  margin: 14px 0;
+}
