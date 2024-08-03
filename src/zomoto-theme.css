@@ -4,16 +4,16 @@
 :root {
   --font-family: "Poppins", sans-serif;
   --font-color: #1a1919;
-  --cta-color: #fc8019;
-  --cta-color-hover: #f8780f;
-  --input-height: 70px;
+  --cta-color: #e01f26;
+  --cta-color-hover: #e01f26;
+  --input-height: 60px;
   --input-font-size: 17px;
   --input-padding: 0 20px;
   --btn-height: 50px;
   --btn-font-size: 14px;
   --btn-font-weight: 600;
   --shadow-color: rgba(0, 0, 0, 0.12);
-  --border-radius: 0;
+  --border-radius: 10px;
 }
 
 /* Global Styles */
@@ -21,29 +21,57 @@
   font-family: var(--font-family);
 }
 
-h1, h2, h3, h4, h5, h6, p, span {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
   color: var(--font-color);
 }
 
 /* Font Weights */
-.poppins-thin { font-weight: 100; }
-.poppins-extralight { font-weight: 200; }
-.poppins-light { font-weight: 300; }
-.poppins-regular { font-weight: 400; }
-.poppins-medium { font-weight: 500; }
-.poppins-semibold { font-weight: 600; }
-.poppins-bold { font-weight: 700; }
-.poppins-extrabold { font-weight: 800; }
-.poppins-black { font-weight: 900; }
+.poppins-thin {
+  font-weight: 100;
+}
+.poppins-extralight {
+  font-weight: 200;
+}
+.poppins-light {
+  font-weight: 300;
+}
+.poppins-regular {
+  font-weight: 400;
+}
+.poppins-medium {
+  font-weight: 500;
+}
+.poppins-semibold {
+  font-weight: 600;
+}
+.poppins-bold {
+  font-weight: 700;
+}
+.poppins-extrabold {
+  font-weight: 800;
+}
+.poppins-black {
+  font-weight: 900;
+}
 
 /* Authentication Card */
 .auth_card {
-  padding: 25px 30px;
-  max-width: 400px;
+  display: block;
+
+  width: 400px !important;
   box-shadow: 0 0 2px 0 #f3f3f3;
   border-radius: var(--border-radius);
 }
-
+.panel-body {
+  padding: 25px 30px;
+}
 .auth_card input {
   height: var(--input-height);
   width: 100%;
@@ -55,6 +83,7 @@ h1, h2, h3, h4, h5, h6, p, span {
 
 /* Buttons */
 button.btn {
+  display: block;
   width: 100%;
   text-align: center;
   line-height: var(--btn-height);
@@ -71,12 +100,19 @@ button.btn {
 }
 
 /* Input Styles */
-.border-botton-none { border-bottom: 0; }
-.form-container { margin: 20px auto; }
-.mb-4 { margin-bottom: 14px; }
+.border-botton-none {
+  border-bottom: 0;
+}
+.form-container {
+  margin: 20px auto;
+}
+.mb-4 {
+  margin-bottom: 14px;
+}
 
 /* Links and Text */
-a.cta, span.cta {
+a.cta,
+span.cta {
   color: var(--cta-color);
   text-decoration: none;
   cursor: pointer;
@@ -115,7 +151,8 @@ p.refrral-label a.cta {
 
 /* Floating Label Input */
 .floating-label-input {
-  position: relative;
+    position: relative;
+    margin-bottom: 20px;
 }
 
 .floating-label-input input {
@@ -156,16 +193,28 @@ p.refrral-label a.cta {
   border-color: #d4d5d9;
 }
 
-.rs-input:focus { outline: none; }
+.rs-input:focus {
+  outline: none;
+}
 
-.rs-btn:focus, .rs-btn:hover {
+.rs-btn:focus,
+.rs-btn:hover {
   background-color: var(--cta-color-hover);
   color: #fff;
 }
 
+.outline-btn:focus,
+.outline-btn:hover {
+  color: #1a1919;
+}
+.outline-btn span {
+  color: #e01f26;
+  font-size: 18px;
+}
 /* Icons and Images */
 img.swiggy-icon {
-  max-width: 75px;
+    max-width: 70px;
+    border-radius: 10%;
 }
 
 .otp_container {
@@ -225,13 +274,25 @@ p.action-text span.cta.phonenumber {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeOut {
-  from { opacity: 1; transform: translateY(0); }
-  to { opacity: 0; transform: translateY(10px); }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }
 
 .loginform-container,
@@ -244,11 +305,39 @@ p.action-text span.cta.phonenumber {
   margin-bottom: 30px;
 }
 .rs-divider-horizontal {
-  margin: 14px 0;
+    margin: 0px 0;
 }
-.zomato-cta{
-  color: #ef4f5f !important
+.outline-btn {
+  display: block;
+  width: 100%;
+  background-color: transparent !important;
+  border: 1px solid #e5e5ea;
+  color: #1a1919;
+  text-align: center;
+  line-height: var(--btn-height);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  height: var(--btn-height);
+  padding: 0 2rem;
+  box-shadow: 0 1px 3px 0 var(--shadow-color);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  border-radius: var(--border-radius);
 }
-.zomoto_btn{
-  background-color: #ef4f5f !important;
+.text-center {
+  text-align: center;
+  line-height: 2;
+}
+img.zomato-banner {
+    width: 100%;
+    height: auto;
+}
+.otp-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+.otp-container input {
+    border: 1px solid #e5e5ea;
 }

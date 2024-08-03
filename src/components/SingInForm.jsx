@@ -6,7 +6,6 @@ import FloatingLabelInput from "./FloatingLabelInput";
 import ArowBackIcon from "@rsuite/icons/ArowBack";
 import MessageIcon from "@rsuite/icons/Message";
 import SwiggyLogo from "../assets/swiggy-logo.png";
-
 import "rsuite/dist/rsuite.min.css";
 
 const SingInForm = () => {

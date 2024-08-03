@@ -1,6 +1,8 @@
 import "rsuite/dist/rsuite.min.css";
 import SignUpForm from "./components/SignUpForm";
 import SignInForm from "./components/SingInForm";
+import ZomotoSigInForm from "./components/ZomatoSignIn";
+import ZomatoSignUp from "./components/ZomatoSignUp";
 import { Container, Content } from "rsuite";
 import { Grid, Row, HStack, Col } from "rsuite";
 import "./main";
@@ -15,11 +17,11 @@ function App() {
           style={{ height: "100vh" }}
         >
           <Row className="show-grid">
-            <Col xs={12}>
-              <SignUpForm />
+            <Col xl={12}>
+              <ZomotoSigInForm />
             </Col>
-            <Col xs={12}>
-              <SignInForm />
+            <Col xl={12}>
+              <ZomatoSignUp />
             </Col>
           </Row>
         </HStack>
