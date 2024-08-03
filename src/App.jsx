@@ -1,8 +1,6 @@
 import "rsuite/dist/rsuite.min.css";
 import SignUpForm from "./components/SignUpForm";
 import SignInForm from "./components/SingInForm";
-import ZomotoSigInForm from "./components/ZomatoSignIn";
-import ZomatoSignUp from "./components/ZomatoSignUp";
 import { Container, Content } from "rsuite";
 import { Grid, Row, HStack, Col } from "rsuite";
 import "./Swiggy-theme.css";
