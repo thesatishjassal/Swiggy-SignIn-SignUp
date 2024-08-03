@@ -6,6 +6,7 @@ import FloatingLabelInput from "./FloatingLabelInput";
 import ArowBackIcon from "@rsuite/icons/ArowBack";
 import MessageIcon from "@rsuite/icons/Message";
 import RegisterShema from "../Schema/RegisterSchema";
+import SwiggyLogo from "../assets/swiggy-logo.png";
 
 import "rsuite/dist/rsuite.min.css";
 
@@ -87,10 +88,7 @@ function SignUpForm() {
                 </a>
               </p>
             </div>
-            <img
-              className="swiggy-icon"
-              src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/Image-login_btpq7r"
-            />
+            <img className="swiggy-icon" src={SwiggyLogo} />
           </Stack>
           <Divider className="div-25" />
           <div className="form-container">
