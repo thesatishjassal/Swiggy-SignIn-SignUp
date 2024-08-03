@@ -6,7 +6,7 @@
   --font-color: #1a1919;
   --cta-color: #fc8019;
   --cta-color-hover: #f8780f;
-  --input-height: 70px;
+  --input-height: 65px;
   --input-font-size: 17px;
   --input-padding: 0 20px;
   --btn-height: 50px;
@@ -38,12 +38,16 @@ h1, h2, h3, h4, h5, h6, p, span {
 
 /* Authentication Card */
 .auth_card {
-  padding: 25px 30px;
   max-width: 400px;
   box-shadow: 0 0 2px 0 #f3f3f3;
   border-radius: var(--border-radius);
 }
-
+.panel-body {
+  padding:0 25px 30px;
+}
+img.zomato-banner {
+  width: 100%;
+}
 .auth_card input {
   height: var(--input-height);
   width: 100%;
@@ -72,7 +76,7 @@ button.btn {
 
 /* Input Styles */
 .border-botton-none { border-bottom: 0; }
-.form-container { margin: 20px auto; }
+.form-container { margin: 20px auto 0; }
 .mb-4 { margin-bottom: 14px; }
 
 /* Links and Text */
@@ -165,7 +169,7 @@ p.refrral-label a.cta {
 
 /* Icons and Images */
 img.swiggy-icon {
-  max-width: 75px;
+  max-width: 70px;
 }
 
 .otp_container {
@@ -244,11 +248,14 @@ p.action-text span.cta.phonenumber {
   margin-bottom: 30px;
 }
 .rs-divider-horizontal {
-  margin: 14px 0;
+  margin: 6px 0;
 }
 .zomato-cta{
   color: #ef4f5f !important
 }
 .zomoto_btn{
   background-color: #ef4f5f !important;
+}
+.mt-30{
+  margin-top: 30px;
 }

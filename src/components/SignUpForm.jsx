@@ -71,6 +71,11 @@ function SignUpForm() {
 
   return (
     <Panel shaded bordered bodyFill className="auth_card">
+        <img
+        src="https://miro.medium.com/v2/resize:fit:1400/1*hl3KhO4aaYtysyGFpcRY9A.gif"
+        className="zomato-banner"
+      />
+      <div className="panel-body">
       <form onSubmit={formik.handleSubmit}>
         <div
           className={`registration-form ${
@@ -93,18 +98,18 @@ function SignUpForm() {
           <Divider className="div-25" />
           <div className="form-container">
             <FloatingLabelInput
-              label="Phone Number"
-              name="Phone Number"
-              value={formik.values.phonenumber}
-              onChange={(value) => formik.setFieldValue("phonenumber", value)}
-            />
-            <FloatingLabelInput
-              label="Name"
+              label="Full Name"
               name="name"
               value={formik.values.name}
               onChange={(value) => formik.setFieldValue("name", value)}
             />
             <FloatingLabelInput
+              label="Phone Number"
+              name="Phone Number"
+              value={formik.values.phonenumber}
+              onChange={(value) => formik.setFieldValue("phonenumber", value)}
+            />
+            {/* <FloatingLabelInput
               label="Email"
               name="email"
               value={formik.values.email}
@@ -129,10 +134,10 @@ function SignUpForm() {
                   Have a referral code?
                 </a>
               </p>
-            )}
+            )} */}
 
-            <Button type="submit" className="btn" block>
-              Continue
+            <Button type="submit" className="btn mt-30" block>
+              countinue
             </Button>
             <p className="term-cond-text">
               By creating an account, I accept the{" "}
@@ -187,6 +192,7 @@ function SignUpForm() {
           </Button>
         </div>
       </form>
+      </div>
     </Panel>
   );
 }

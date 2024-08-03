@@ -64,7 +64,6 @@ span {
 /* Authentication Card */
 .auth_card {
   display: block;
-
   width: 400px !important;
   box-shadow: 0 0 2px 0 #f3f3f3;
   border-radius: var(--border-radius);
