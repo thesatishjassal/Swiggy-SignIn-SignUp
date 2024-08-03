@@ -1,13 +1,11 @@
 import "rsuite/dist/rsuite.min.css";
-import SignUpForm from "./components/SignUpForm";
-import SignInForm from "./components/SingInForm";
-import ZomotoSigInForm from "./components/ZomatoSignIn";
-import ZomatoSignUp from "./components/ZomatoSignUp";
+import SignUpForm from "../components/SignUpForm";
+import SignInForm from "../components/SingInForm";
 import { Container, Content } from "rsuite";
 import { Grid, Row, HStack, Col } from "rsuite";
 import "./Swiggy-theme.css";
 
-function App() {
+function Swiggy() {
   return (
     <Container>
       <Content>
@@ -30,4 +28,4 @@ function App() {
   );
 }
 
-export default App;
+export default Swiggy;
