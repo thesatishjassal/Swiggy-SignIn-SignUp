@@ -7,8 +7,8 @@
   --cta-color: #fc8019;
   --cta-color-hover: #f8780f;
   --input-height: 65px;
-  --input-font-size: 17px;
-  --input-padding: 0 20px;
+  --input-font-size: 14px;
+  --input-padding: 10px 20px;
   --btn-height: 50px;
   --btn-font-size: 14px;
   --btn-font-weight: 600;
@@ -55,6 +55,7 @@ img.zomato-banner {
   padding: var(--input-padding);
   font-weight: 500;
   border-radius: var(--border-radius);
+  line-height: 2px;
 }
 
 /* Buttons */
@@ -72,6 +73,7 @@ button.btn {
   text-transform: uppercase;
   margin-bottom: 12px;
   border-radius: var(--border-radius);
+  transition: all 0.4s ease-in-out;
 }
 
 /* Input Styles */
@@ -136,15 +138,15 @@ p.refrral-label a.cta {
   color: #aaa;
   transition: all 0.2s ease-out;
   pointer-events: none;
-  background: white;
   padding: 0 4px;
 }
 
 .floating-label-input.focused label,
 .floating-label-input label.active {
   top: 6px;
-  font-size: 12px;
-  color: #333;
+  font-size: 11px;
+  color: #7e808c;
+  font-weight: 300;
 }
 
 .floating-label-input input:focus + label {
@@ -258,4 +260,39 @@ p.action-text span.cta.phonenumber {
 }
 .mt-30{
   margin-top: 30px;
+}
+
+.floating-label-input label {
+  color: initial;
+}
+
+.floating-label-input label.active {
+  top: 6px;
+  font-size: 12px;
+}
+
+.floating-label-input .form-control.error + label {
+  color: red !important;
+}
+
+/* Success button style */
+.success-btn {
+  background-color: rgb(27, 202, 27) !important;
+  box-shadow: 0 0 15px rgba(214, 214, 214, 0.4);
+  transform: scale(1);
+}
+
+/* Text fade animation */
+@keyframes text-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.btn span {
+  animation: text-fade 0.5s ease-in-out;
+  color: rgb(255, 255, 255) !important;
 }

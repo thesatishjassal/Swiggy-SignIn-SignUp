@@ -1,22 +1,11 @@
 import * as Yup from 'yup';
 
-const RegisterSchema = Yup.object({
-  phonenumber: Yup.string()
-    .required('Phone Number is required')
-    .matches(/^[0-9]+$/, 'Phone Number must be numeric')
-    .min(10, 'Phone Number must be at least 10 digits')
-    .max(15, 'Phone Number must be at most 15 digits'),
-  name: Yup.string()
-    .required('Name is required'),
-  email: Yup.string()
-    .required('Email is required')
-    .email('Email is invalid'),
-  referralcode: Yup.string(),
-  otp: Yup.string()
-    .when('showOtpVerification', {
-      is: true,
-      then: Yup.string().required('OTP is required')
-    })
+const RegisterSchema = Yup.object().shape({
+  fullName: Yup.string().required("Full name is required"),
+  phoneNumber: Yup.string()
+    .matches(/^\d{10}$/, "Phone number must be 10 digits")
+    .required("Phone number is required"),
+  otp: Yup.string().length(6, "OTP must be 6 digits").required("OTP is required"),
 });
 
 export default RegisterSchema;

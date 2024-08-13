@@ -1,12 +1,21 @@
 import { Panel } from "rsuite";
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 import { Button, Divider, Stack } from "rsuite";
 import FloatingLabelInput from "./FloatingLabelInput";
 import ArowBackIcon from "@rsuite/icons/ArowBack";
 import MessageIcon from "@rsuite/icons/Message";
 import SwiggyLogo from "../assets/swiggy-logo.png";
 import "rsuite/dist/rsuite.min.css";
+
+// Validation Schema
+const validationSchema = Yup.object({
+  phonenumber: Yup.string().required("Phone number is required"),
+  otp: Yup.string()
+    .length(6, "OTP must be exactly 6 digits")
+    .matches(/^\d+$/, "OTP must be a number")
+});
 
 const SingInForm = () => {
   const [timeLeft, setTimeLeft] = useState(30);
@@ -18,6 +27,7 @@ const SingInForm = () => {
       phonenumber: "",
       otp: "",
     },
+    validationSchema,
     onSubmit: (values) => {
       if (!showOtpVerification) {
         setShowOtpVerification(true);
@@ -29,6 +39,7 @@ const SingInForm = () => {
 
   const resendOtp = async () => {
     console.log("Resending OTP...");
+    // Simulate OTP resend
     // return new Promise((resolve) => setTimeout(resolve, 1000));
   };
 
@@ -90,15 +101,14 @@ const SingInForm = () => {
               <div className="form-container">
                 <FloatingLabelInput
                   label="Phone Number"
-                  name="phone Number"
+                  name="phonenumber"
                   value={formik.values.phonenumber}
-                  onChange={(value) =>
-                    formik.setFieldValue("phoneNumber", value)
-                  }
+                  onChange={(value) => formik.setFieldValue("phonenumber", value)}
+                  error={formik.errors.phonenumber && formik.touched.phonenumber ? formik.errors.phonenumber : null}
                 />
               </div>
               <Button type="submit" className="btn mt-30" block>
-                countinue
+                Continue
               </Button>
               <p className="term-cond-text">
                 By clicking on Login, I accept the
@@ -136,6 +146,7 @@ const SingInForm = () => {
                   name="otp"
                   value={formik.values.otp}
                   onChange={(value) => formik.setFieldValue("otp", value)}
+                  error={formik.errors.otp && formik.touched.otp ? formik.errors.otp : null}
                 />
               </div>
               {resendPass ? (
@@ -146,7 +157,11 @@ const SingInForm = () => {
                   </a>
                 </p>
               ) : null}
-              <Button type="submit" className="btn" block>
+              <Button
+                type="submit"
+                className={resendPass ? "btn" : "btn mt-30"}
+                block
+              >
                 Verify OTP
               </Button>
             </div>

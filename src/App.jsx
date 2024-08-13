@@ -9,15 +9,9 @@ function App() {
   return (
     <Container>
       <Content>
-        <HStack
-          alignItems="center"
-          justifyContent="center"
-        >
+        <HStack alignItems="center" justifyContent="center">
           <Row className="show-grid">
-            <Col xl={12}>
-              <SignInForm />
-            </Col>
-            <Col xl={12}>
+            <Col>
               <SignUpForm />
             </Col>
           </Row>
