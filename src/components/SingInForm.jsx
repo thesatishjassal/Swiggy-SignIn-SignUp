@@ -73,7 +73,7 @@ const SingInForm = () => {
   return (
     <Panel shaded bordered bodyFill className="auth_card">
       <img
-        src="https://miro.medium.com/v2/resize:fit:1400/1*iBebVuGHJ8Gqoo-LTzCbAg.png"
+        src="/banner.png"
         className="zomato-banner"
       />
       <div className="panel-body">

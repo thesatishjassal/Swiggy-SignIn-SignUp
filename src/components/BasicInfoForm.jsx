@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Divider, Stack } from "rsuite";
 import FloatingLabelInput from "./FloatingLabelInput";
 import SwiggyLogo from "../assets/swiggy-logo.png";
-import useRegisterAccount from "../hooks/useRegisterAccount"; // Import the custom hook
 import { useFormik } from "formik";
 import RegisterSchema from "../Schema/RegisterSchema";
 
 function BasicInfoForm({ setShowOtpVerification, setShowPhoneNumber }) {
-  const { loading, error, response, registerAccount } = useRegisterAccount(
-    "http://localhost:8080/api/v1/register"
-  ); // Use the custom hook
+  const [otpVerified, setOtpVerified] = useState(false);
 
-  // Formik for basic info/
+  // Formik for basic info
   const formik = useFormik({
     initialValues: {
       phoneNumber: "",
@@ -19,11 +16,21 @@ function BasicInfoForm({ setShowOtpVerification, setShowPhoneNumber }) {
     },
     validationSchema: RegisterSchema.pick(["fullName", "phoneNumber"]),
     onSubmit: (values) => {
-      registerAccount(formik.values.fullName, formik.values.phoneNumber); // Call the hook's function to register the account
-      setShowPhoneNumber(formik.values.phoneNumber)
+      setShowPhoneNumber(formik.values.phoneNumber);
       setShowOtpVerification(true);
     },
   });
+
+  const handleOtpChange = (value) => {
+    formik.setFieldValue("otp", value);
+
+    // Simulating OTP verification (just check if it's 6 digits for now)
+    if (value.length === 6) {
+      setOtpVerified(true);
+    } else {
+      setOtpVerified(false);
+    }
+  };
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -38,7 +45,7 @@ function BasicInfoForm({ setShowOtpVerification, setShowPhoneNumber }) {
               </a>
             </p>
           </div>
-          <img className="swiggy-icon" src={SwiggyLogo} />
+          <img className="swiggy-icon" src={SwiggyLogo} alt="Swiggy Logo" />
         </Stack>
         <Divider className="div-25" />
         <div className="form-container">
@@ -64,8 +71,12 @@ function BasicInfoForm({ setShowOtpVerification, setShowPhoneNumber }) {
                 : null
             }
           />
-          <Button type="submit" className="btn mt-30" block>
-            Continue
+          <Button
+            type="submit"
+            className={`btn mt-30 ${otpVerified ? "btn-success" : ""}`}
+            block
+          >
+            {otpVerified ? "Verified" : "Continue"}
           </Button>
           <p className="term-cond-text">
             By creating an account, I accept the{" "}

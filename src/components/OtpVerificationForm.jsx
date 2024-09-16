@@ -2,18 +2,14 @@ import { Button, Divider, Stack } from "rsuite";
 import FloatingLabelInput from "./FloatingLabelInput";
 import ArowBackIcon from "@rsuite/icons/ArowBack";
 import MessageIcon from "@rsuite/icons/Message";
-import useVerifyOtp from "../hooks/useVerifyOtp";
 import { useFormik } from "formik";
 import React, { useState, useEffect } from "react";
 import RegisterSchema from "../Schema/RegisterSchema";
-import toast, { Toaster } from "react-hot-toast";
 
 function OtpVerificationForm({ setShowOtpVerification, phoneNumber }) {
   const [timeLeft, setTimeLeft] = useState(60);
   const [resendPass, setResendPass] = useState(false);
-  const { loading, error, response, statusCode, verifyOtp } = useVerifyOtp(
-    "http://localhost:8080/api/v1/verify-otp"
-  );
+  const [isVerified, setIsVerified] = useState(false);
 
   // Formik for OTP verification
   const formik = useFormik({
@@ -21,8 +17,11 @@ function OtpVerificationForm({ setShowOtpVerification, phoneNumber }) {
       otp: "",
     },
     validationSchema: RegisterSchema.pick(["otp"]),
-    onSubmit: async (values) => {
-      await verifyOtp(phoneNumber, formik.values.otp);
+    onSubmit: (values) => {
+      if (values.otp.length === 6) {
+        setIsVerified(true);
+        console.log("OTP Verified:", values.otp);
+      }
     },
   });
 
@@ -32,7 +31,6 @@ function OtpVerificationForm({ setShowOtpVerification, phoneNumber }) {
       return;
     }
 
-    console.log(error, statusCode);
     const intervalId = setInterval(() => {
       setTimeLeft((prevTime) => prevTime - 1);
     }, 1000);
@@ -40,18 +38,18 @@ function OtpVerificationForm({ setShowOtpVerification, phoneNumber }) {
     return () => clearInterval(intervalId);
   }, [timeLeft]);
 
-  const handleResendClick = async () => {
-    try {
-      await resendOtp();
-      setTimeLeft(60);
-      setResendPass(false);
-    } catch (error) {
-      console.error("Error resending OTP:", error);
-    }
+  const handleResendClick = () => {
+    setTimeLeft(60);
+    setResendPass(false);
   };
 
   const handleBackClick = () => {
     setShowOtpVerification(false);
+  };
+  // Helper function to handle numeric input only
+  const handleNumericInput = (value) => {
+    const numericValue = value.replace(/\D/g, ""); // Remove any non-numeric characters
+    formik.setFieldValue("otp", numericValue);
   };
 
   return (
@@ -76,14 +74,15 @@ function OtpVerificationForm({ setShowOtpVerification, phoneNumber }) {
         <div className="form-container">
           <FloatingLabelInput
             label="One Time Password"
-            name="otp"
-            statusCode={statusCode}
             value={formik.values.otp}
-            onChange={(value) => formik.setFieldValue("otp", value)}
+            onChange={(value) => handleNumericInput(value)} // Use the numeric input handler
             error={
               formik.errors.otp && formik.touched.otp ? formik.errors.otp : null
             }
           />
+          {formik.values.otp.length > 6 && (
+            <p className="error">OTP Must be exactly 6 digits.</p>
+          )}
           {resendPass ? (
             <p className="refrral-label">
               Did not receive OTP? &nbsp;
@@ -94,14 +93,11 @@ function OtpVerificationForm({ setShowOtpVerification, phoneNumber }) {
           ) : null}
           <Button
             type="submit"
-            className={`${
-              statusCode === 200 ? "btn success-btn" : "btn"
-            } ${resendPass ? "btn" : "btn  mt-30"}`}
+            className={`btn ${isVerified ? "success-btn" : ""} ${resendPass ? "" : "mt-30"}`}
             block
+            disabled={formik.values.otp.length !== 6}
           >
-            <span className={statusCode === 200 ? "success-text" : ""}>
-              {statusCode === 200 ? "Verified Successfully!" : "Verify OTP"}
-            </span>
+            {isVerified ? "OTP Verified!" : "Verify OTP"}
           </Button>
         </div>
       </div>

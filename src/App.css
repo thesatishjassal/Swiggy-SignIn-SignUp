@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+p.error {
+  line-height: 1.8;
+  font-size: 12px;
+  color: #f72e2e;
+}
