@@ -296,3 +296,8 @@ p.action-text span.cta.phonenumber {
   animation: text-fade 0.5s ease-in-out;
   color: rgb(255, 255, 255) !important;
 }
+@media only screen and (max-width: 600px) {
+  .auth_card {
+    width: auto !important;
+  }
+}
